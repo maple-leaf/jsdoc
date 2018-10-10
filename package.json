@@ -1,6 +1,6 @@
 {
-  "name": "jsdoc",
-  "version": "3.6.0-dev",
+  "name": "@maple-leaf/jsdoc",
+  "version": "3.6.0-dev5",
   "revision": "1500758109682",
   "description": "An API documentation generator for JavaScript.",
   "keywords": [
@@ -59,8 +59,11 @@
       "url": "https://github.com/jsdoc3/jsdoc/graphs/contributors"
     }
   ],
-  "maintainers": {
+  "maintainers": [{
     "name": "Jeff Williams",
     "email": "jeffrey.l.williams@gmail.com"
-  }
+  }, {
+    "name": "maple-leaf",
+    "email": "tjfdfs.88@outlook.com"
+  }]
 }

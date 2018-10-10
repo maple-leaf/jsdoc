@@ -1,6 +1,35 @@
 JSDoc 3
 =======
 
+## This is a [MODIFIED](https://github.com/maple-leaf/jsdoc) version of [jsdoc3](https://github.com/jsdoc3/jsdoc)
+
+### what's changed
+- add two tags: component, directive. This two tags's behavior is same with `module` tag
+
+usage:
+```javascript
+/** @component myAwesomeComponent */
+
+/**
+ * document for myAwesomeComponent
+ *
+ * @prop {String} firstProp - first required prop for awesome
+ * @prop {String} [secProp='optional'] - second optional prop for awesome
+ * /
+```
+```javascript
+/** @directive myAwesomeDirective */
+
+/**
+ * document for myAwesomeDirective
+ *
+ * @param {String} firstArg - first required arg for awesome
+ * @param {String} [secArg='optional'] - second optional arg for awesome
+ * /
+```
+
+---------------------
+
 [![Build Status](https://travis-ci.org/jsdoc3/jsdoc.svg?branch=master)](http://travis-ci.org/jsdoc3/jsdoc)
 
 An API documentation generator for JavaScript.

@@ -370,12 +370,14 @@ function buildNav(members) {
 
     nav += buildMemberNav(members.modules, 'Modules', {}, linkto);
     nav += buildMemberNav(members.externals, 'Externals', seen, linktoExternal);
-    nav += buildMemberNav(members.namespaces, 'Namespaces', seen, linkto);
     nav += buildMemberNav(members.classes, 'Classes', seen, linkto);
-    nav += buildMemberNav(members.interfaces, 'Interfaces', seen, linkto);
     nav += buildMemberNav(members.events, 'Events', seen, linkto);
+    nav += buildMemberNav(members.namespaces, 'Namespaces', seen, linkto);
     nav += buildMemberNav(members.mixins, 'Mixins', seen, linkto);
     nav += buildMemberNav(members.tutorials, 'Tutorials', seenTutorials, linktoTutorial);
+    nav += buildMemberNav(members.interfaces, 'Interfaces', seen, linkto);
+    nav += buildMemberNav(members.components, 'Components', seen, linkto);
+    nav += buildMemberNav(members.directives, 'Directives', seen, linkto);
 
     if (members.globals.length) {
         globalNav = '';
@@ -416,6 +418,8 @@ exports.publish = function(taffyData, opts, tutorials) {
     var members;
     var mixins;
     var modules;
+    var components;
+    var directives;
     var namespaces;
     var outputSourceFiles;
     var packageInfo;
@@ -610,6 +614,8 @@ exports.publish = function(taffyData, opts, tutorials) {
     // once for all
     view.nav = buildNav(members);
     attachModuleSymbols( find({ longname: {left: 'module:'} }), members.modules );
+    attachModuleSymbols( find({ longname: {left: 'component:'} }), members.components );
+    attachModuleSymbols( find({ longname: {left: 'directive:'} }), members.directives );
 
     // generate the pretty-printed source files first so other pages can link to them
     if (outputSourceFiles) {
@@ -638,6 +644,8 @@ exports.publish = function(taffyData, opts, tutorials) {
     mixins = taffy(members.mixins);
     externals = taffy(members.externals);
     interfaces = taffy(members.interfaces);
+    components = taffy(members.components);
+    directives = taffy(members.directives);
 
     Object.keys(helper.longnameToUrl).forEach(function(longname) {
         var myClasses = helper.find(classes, {longname: longname});
@@ -646,6 +654,8 @@ exports.publish = function(taffyData, opts, tutorials) {
         var myMixins = helper.find(mixins, {longname: longname});
         var myModules = helper.find(modules, {longname: longname});
         var myNamespaces = helper.find(namespaces, {longname: longname});
+        var myComponents = helper.find(components, {longname: longname});
+        var myDirectives = helper.find(directives, {longname: longname});
 
         if (myModules.length) {
             generate('Module: ' + myModules[0].name, myModules, helper.longnameToUrl[longname]);
@@ -669,6 +679,14 @@ exports.publish = function(taffyData, opts, tutorials) {
 
         if (myInterfaces.length) {
             generate('Interface: ' + myInterfaces[0].name, myInterfaces, helper.longnameToUrl[longname]);
+        }
+
+        if (myComponents.length) {
+            generate('Component: ' + myComponents[0].name, myComponents, helper.longnameToUrl[longname]);
+        }
+
+        if (myDirectives.length) {
+            generate('Directive: ' + myDirectives[0].name, myDirectives, helper.longnameToUrl[longname]);
         }
     });
 
