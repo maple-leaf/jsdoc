@@ -6,7 +6,12 @@ JSDoc 3
 ### what's changed
 - add two tags: component, directive. This two tags's behavior is same with `module` tag
 
-usage:
+### install
+```
+npm install @maple-leaf/jsdoc
+```
+
+### usage:
 ```javascript
 /** @component myAwesomeComponent */
 
